@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Spacer</title>
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="icon" href="images/favicon.ico">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Event Spacer">
+  <meta name="theme-color" content="#4285F4">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Event Spacer">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#4285F4">
+
+  <!-- Tile icon for Win8 -->
+  <!-- <meta name="msapplication-TileColor" content="#3372DF">
+  <meta name="msapplication-navbutton-color" content="#303F9F"> -->
+
+  <!-- Material Design Components -->
+  <link rel="stylesheet"
+  href="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.min.css">
+  <script src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
+
+  <!-- App Styling -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+
+  <style>
+     /* Set the size of the div element that contains the map */
+    #map {
+      height: 400px;  /* The height is 400 pixels */
+      width: 100%;  /* The width is the width of the web page */
+     }
+  </style>
+</head>
+<body>
+<div>
+  <div class="header"></div>
+
+  <main></main>
+
+  <div hidden class="template" id="header-base">
+      <header id="site-header" class="mdc-toolbar mdc-toolbar--fixed">
+        <div id="title" class="mdc-toolbar__row mdc-layout-grid">
+          <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <span class="material-icons mdc-toolbar__icon--menu">event</span>
+            <span class="mdc-toolbar__title">Event Spacer</span>
+          </section>
+        </div>
+        <div id="section-header" data-fir-if="hasSectionHeader"></div>
+      </header>
+  </div>
+
+  <div hidden class="template" id="event-header">
+    <header class="mdc-layout__header mdc-layout__header--transparent">
+      <h2 data-fir-content="name"></h2>
+    </header>
+  </div>
+  <!--The div element for the map -->
+  <div id="map"></div>
+  <div hidden id="load"></div>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwq3WJZd2uzeTAPX04jgCmOtUy59X4sFc&callback=initMap">
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      // // The Firebase SDK is initialized and available here!
+      //
+      // firebase.auth().onAuthStateChanged(user => { });
+      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+      // firebase.messaging().requestPermission().then(() => { });
+      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      //
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+      try {
+        let app = firebase.app();
+        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+      } catch (e) {
+        console.error(e);
+        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+      }
+    });
+  </script>
+  <!-- update the version number as needed -->
+  <script src="/__/firebase/7.15.0/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script src="/__/firebase/7.15.0/firebase-auth.js"></script>
+  <script src="/__/firebase/7.15.0/firebase-database.js"></script>
+  <script src="/__/firebase/7.15.0/firebase-messaging.js"></script>
+  <script src="/__/firebase/7.15.0/firebase-storage.js"></script>
+  <script src="/__/firebase/7.15.0/firebase-firestore.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script src="/__/firebase/init.js"></script>
+
+  <!-- Navigo -->
+  <script src="//unpkg.com/navigo@6"></script>
+
+  <!-- GeoFire -->
+  <!--<script src="https://cdn.firebase.com/libs/geofire/5.0.1/geofire.min.js"></script>-->
+
+  <!-- Event Spacer scripts-->
+  <!--<script src="/scripts/EventSpacer.js"></script>
+  <script src="/scripts/EventSpacer.View.js"></script>
+  <script src="/scripts/EventSpacer.Data.js"></script>
+  <script src="/scripts/Map.js"></script>-->
+</div>
+</body>
+</html>
