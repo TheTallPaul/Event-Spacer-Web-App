@@ -1,6 +1,6 @@
 # EventSpacer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+The front-end for the Event Spacer app.
 
 ## Development server
 

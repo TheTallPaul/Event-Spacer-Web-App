@@ -6,14 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 
 import { AddEventComponent } from './add-event/add-event.component';
 import { ViewEventComponent } from './view-event/view-event.component';
-import { EventsService } from './shared/events.service'
+import { EventsService } from './shared/events.service';
 
 const appRoutes: Routes = [
   { path: 'add-event', component: AddEventComponent },
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     redirectTo: '/add-event',
     pathMatch: 'full'
   }
-]
+];
 
 @NgModule({
   declarations: [
