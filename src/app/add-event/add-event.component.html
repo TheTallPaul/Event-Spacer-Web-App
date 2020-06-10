@@ -1,0 +1,23 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="16" [disableDefaultUI]="false">
+    <agm-rectangle [north]="north" [west]="west" [east]="east" [south]="south" [fillColor]="'red'" [editable]="true"
+        [draggable]="true" [visible]="true" (boundsChange)="onBoundsChange($event)">
+    </agm-rectangle>
+</agm-map>
+
+<p>Drag the box over the area you want to have your event.</p>
+
+<form [formGroup]="this.eventsService.form" >
+    <label>
+    Spacing (ft.):
+    <input type="number" min="0" step="0.1" formControlName="spacing_meters" required>
+  </label>
+
+    <label>
+    Event Name (optional):
+    <input type="text" formControlName="name">
+  </label>
+
+    <button class="waves-effect waves-light btn col s12" (click)="onSubmit()">
+    Submit
+  </button>
+</form>
