@@ -13,15 +13,15 @@ import { EventsService } from '../shared/events.service';
 })
 export class AddEventComponent implements OnInit {
 
-  lat: 45.509219;
-  lng: -122.5394805;
+  lat = 45.509219;
+  lng = -122.5394805;
   feetToMeters: 0.3048;
 
   // Mill End Park
-  north: 45.509668;
-  east: -122.53871;
-  south: 45.50877;
-  west: -122.540251;
+  north = 45.509668;
+  east = -122.53871;
+  south = 45.50877;
+  west = -122.540251;
 
   constructor(public eventsService: EventsService) {}
 

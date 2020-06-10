@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
   providedIn: 'root'
 })
 export class EventsService {
-  spacingFeet: 10;
+  spacingFeet = 10;
 
   form = new FormGroup({
     spacing_meters: new FormControl(this.spacingFeet),
