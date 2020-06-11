@@ -16,8 +16,8 @@ export class EventComponent implements OnInit {
   markers: marker[] = [];
   private sub: any;
   event: any;
-  center_lat = 0;
-  center_lng = 0;
+  centerLat = 0;
+  centerLng = 0;
   name = '';
   eventID = '';
 
@@ -29,8 +29,9 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.eventID = params['eventid'];
-      this.getEvent(params['eventid']);
+      const key = 'eventid';
+      this.eventID = params[key];
+      this.getEvent(params[key]);
     });
   }
 
@@ -38,14 +39,14 @@ export class EventComponent implements OnInit {
     this.eventsService.getEvent(eventID).subscribe(res => {
       this.event = res;
 
-      if (this.center_lat == 0 && this.center_lng == 0){
-        this.center_lat = this.event.spaced_points[0].latitude;
-        this.center_lng = this.event.spaced_points[0].longitude;
+      if (this.centerLat === 0 && this.centerLng === 0){
+        this.centerLat = this.event.spaced_points[0].latitude;
+        this.centerLng = this.event.spaced_points[0].longitude;
       }
       this.name = this.event.name;
 
       // Fill markers
-      for (let point of this.event.spaced_points) {
+      for (const point of this.event.spaced_points) {
         // Filter out markers that have been claimed
         if (!this.event.claimed_spots.hasOwnProperty(
           encodeURIComponent('' + point.latitude + ',' + point.longitude).replace(/\./g, 'D'))) {
@@ -67,9 +68,12 @@ export class EventComponent implements OnInit {
       this.eventID, encodeURIComponent('' + lat + ',' + lng).replace(/\./g, 'D'));
   }
 
+  // TO-DO have cleanup take care of all subs
+  /*
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+  */
 }
 
 // Interface for type safety.

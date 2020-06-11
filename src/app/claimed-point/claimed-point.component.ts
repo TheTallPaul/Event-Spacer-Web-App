@@ -17,13 +17,14 @@ export class ClaimedPointComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
+      const key = 'latLngStr';
       // Convert URI to Lat'n'Lng
       const latLngStr = decodeURIComponent(
-        params['latLngStr']).replace(/D/g, '.').split(',');
-      if(!isNaN(Number(latLngStr[0]))){
+        params[key]).replace(/D/g, '.').split(',');
+      if (!isNaN(Number(latLngStr[0]))) {
         this.lat = Number(latLngStr[0]);
       }
-      if(!isNaN(Number(latLngStr[1]))){
+      if (!isNaN(Number(latLngStr[1]))) {
         this.lng = Number(latLngStr[1]);
       }
     });
