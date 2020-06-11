@@ -12,8 +12,6 @@ import * as firebase from 'firebase';
 export class EventsService {
   // TO-DO move the spacing to the component
   spacingFeet = 12;
-  private eventDoc: AngularFirestoreDocument<Event>;
-  event: Observable<Event>;
 
   form = new FormGroup({
     spacing_meters: new FormControl(this.spacingFeet),
@@ -29,17 +27,13 @@ export class EventsService {
     private afs: AngularFirestore
   ){}
 
-  update(event: Event) {
-    this.eventDoc.update(event);
-  }
-
   createEvent(data) {
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection('events')
         .add(data)
         .then(
-          // TO-DO: make this work in the component, not the service
+          // TO-DO make this work in the component, not the service
           res => { this.router.navigate(['/event/' + res.id]); },
           err => reject(err)
         );
@@ -48,5 +42,19 @@ export class EventsService {
 
   getEvent(eventID) {
     return this.firestore.collection('events').doc(eventID).valueChanges();
+  }
+
+  updateEventClaimedSpots(eventID, latLngStr) {
+    return new Promise<any>((resolve, reject) => {
+      this.firestore.collection('events').doc(eventID)
+        .update({
+          [`claimed_spots.${latLngStr}`]: true
+        })
+        .then(
+          // TO-DO make this work in the component, not the service
+          res => { this.router.navigate(['/claimed-point/' + latLngStr]); },
+          err => reject(err)
+        );
+    });
   }
 }

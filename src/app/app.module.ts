@@ -14,12 +14,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
 import { AddEventComponent } from './add-event/add-event.component';
-import { ViewEventComponent } from './event/event.component';
+import { EventComponent } from './event/event.component';
+import { ClaimedPointComponent } from './claimed-point/claimed-point.component';
 import { EventsService } from './shared/events.service';
 
 const appRoutes: Routes = [
   { path: 'add-event', component: AddEventComponent },
-  { path: 'event/:eventid', component: ViewEventComponent},
+  { path: 'event/:eventid', component: EventComponent},
+  { path: 'claimed-point/:latLngStr', component: ClaimedPointComponent},
   { path: '',
     redirectTo: '/add-event',
     pathMatch: 'full'
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AddEventComponent,
-    ViewEventComponent
+    EventComponent,
+    ClaimedPointComponent
   ],
   imports: [
     BrowserModule,

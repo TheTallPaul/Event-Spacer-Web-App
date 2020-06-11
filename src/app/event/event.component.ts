@@ -11,7 +11,7 @@ declare var google: any;
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class ViewEventComponent implements OnInit {
+export class EventComponent implements OnInit {
 
   markers: marker[] = [];
   private sub: any;
@@ -20,6 +20,7 @@ export class ViewEventComponent implements OnInit {
   center_lng: 0;
   minClusterSize: 50;
   name: '';
+  eventID: '';
 
   constructor(
     public eventsService: EventsService,
@@ -28,8 +29,8 @@ export class ViewEventComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.center_lat);
     this.sub = this.route.params.subscribe(params => {
+      this.eventID = params['eventid'];
       this.getEvent(params['eventid']);
     });
   }
@@ -37,8 +38,9 @@ export class ViewEventComponent implements OnInit {
   getEvent(eventID) {
     this.eventsService.getEvent(eventID).subscribe(res => {
       this.event = res;
-      console.log(this.center_lat);
-      // Recenter if at defaults
+
+      // TO-DO don't recenter if user has touched map otherwise resets to center
+      // every time any user claims an event
       this.center_lat = this.event.spaced_points[0].latitude;
       this.center_lng = this.event.spaced_points[0].longitude;
 
@@ -46,19 +48,25 @@ export class ViewEventComponent implements OnInit {
 
       // Fill markers
       for (let point of this.event.spaced_points) {
-        this.markers.push(
-          {
-            lat: point.latitude,
-            lng: point.longitude,
-            draggable: false
-          }
-        );
+        // Filter out markers that have been claimed
+        if (!this.event.claimed_spots.hasOwnProperty(
+          encodeURIComponent('' + point.latitude + ',' + point.longitude).replace(/\./g, 'D'))) {
+          this.markers.push(
+            {
+              lat: point.latitude,
+              lng: point.longitude,
+              draggable: false
+            }
+          );
+        }
       }
     });
   }
 
   claimPoint(lat, lng) {
-    console.log(lat, lng);
+    // TO-DO make this wonky string logic a proper function or find a better solution
+    this.eventsService.updateEventClaimedSpots(
+      this.eventID, encodeURIComponent('' + lat + ',' + lng).replace(/\./g, 'D'));
   }
 
   ngOnDestroy() {
