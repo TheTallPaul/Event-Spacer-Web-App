@@ -53,6 +53,7 @@ export class EventsService {
         .then(
           // TO-DO make this work in the component, not the service
           res => { this.router.navigate(['/claimed-point/' + latLngStr]); },
+          // TO-DO notify user if claim was rejected
           err => reject(err)
         );
     });

@@ -16,11 +16,10 @@ export class EventComponent implements OnInit {
   markers: marker[] = [];
   private sub: any;
   event: any;
-  center_lat: 0;
-  center_lng: 0;
-  minClusterSize: 50;
-  name: '';
-  eventID: '';
+  center_lat = 0;
+  center_lng = 0;
+  name = '';
+  eventID = '';
 
   constructor(
     public eventsService: EventsService,
@@ -39,11 +38,10 @@ export class EventComponent implements OnInit {
     this.eventsService.getEvent(eventID).subscribe(res => {
       this.event = res;
 
-      // TO-DO don't recenter if user has touched map otherwise resets to center
-      // every time any user claims an event
-      this.center_lat = this.event.spaced_points[0].latitude;
-      this.center_lng = this.event.spaced_points[0].longitude;
-
+      if (this.center_lat == 0 && this.center_lng == 0){
+        this.center_lat = this.event.spaced_points[0].latitude;
+        this.center_lng = this.event.spaced_points[0].longitude;
+      }
       this.name = this.event.name;
 
       // Fill markers
