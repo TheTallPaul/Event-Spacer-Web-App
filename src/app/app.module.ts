@@ -10,6 +10,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { environment } from 'src/environments/environment';
 
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     CommonModule,
     RouterModule.forRoot(
       appRoutes

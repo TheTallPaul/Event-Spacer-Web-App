@@ -1,3 +1,4 @@
+<div [hidden]='loadingEvent'>
 <agm-map
   [latitude]='centerLat'
   [longitude]='centerLng'
@@ -28,3 +29,9 @@
 <p>Zoom in on the number clusters and click a marker to claim it. If markers aren't appearing, try refreshing the page.</p>
 <strong>Be Aware:</strong>
 <p>These locations were chosen arbitrarily by a computer algorithm. There are no guarantees any point is safe or accessible. For example: it could be on water, on private property, or in the middle of the road. Trust your own judgement first!</p>
+</div>
+
+<div [hidden]='!loadingEvent'>
+<mat-progress-spinner>
+</mat-progress-spinner>
+</div>

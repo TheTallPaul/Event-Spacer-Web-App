@@ -20,6 +20,7 @@ export class EventComponent implements OnInit {
   centerLng = 0;
   name = '';
   eventID = '';
+  loadingEvent = true;
 
   constructor(
     public eventsService: EventsService,
@@ -39,24 +40,30 @@ export class EventComponent implements OnInit {
     this.eventsService.getEvent(eventID).subscribe(res => {
       this.event = res;
 
-      if (this.centerLat === 0 && this.centerLng === 0){
+      // Reposition to the real center and marker as no longer loading
+      if (this.event.spaced_points && this.event.spaced_points.length > 0 &&
+        this.centerLat === 0 && this.centerLng === 0){
         this.centerLat = this.event.spaced_points[0].latitude;
         this.centerLng = this.event.spaced_points[0].longitude;
+        this.loadingEvent = false;
       }
+
       this.name = this.event.name;
 
       // Fill markers
-      for (const point of this.event.spaced_points) {
-        // Filter out markers that have been claimed
-        if (!this.event.claimed_spots.hasOwnProperty(
-          encodeURIComponent('' + point.latitude + ',' + point.longitude).replace(/\./g, 'D'))) {
-          this.markers.push(
-            {
-              lat: point.latitude,
-              lng: point.longitude,
-              draggable: false
-            }
-          );
+      if (this.event.spaced_points && this.event.spaced_points.length > 0) {
+        for (const point of this.event.spaced_points) {
+          // Filter out markers that have been claimed
+          if (!this.event.claimed_spots.hasOwnProperty(
+            encodeURIComponent('' + point.latitude + ',' + point.longitude).replace(/\./g, 'D'))) {
+            this.markers.push(
+              {
+                lat: point.latitude,
+                lng: point.longitude,
+                draggable: false
+              }
+            );
+          }
         }
       }
     });
