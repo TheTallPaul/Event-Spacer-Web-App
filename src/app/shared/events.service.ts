@@ -10,7 +10,8 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class EventsService {
-  spacingFeet = 10;
+  // TO-DO move the spacing to the component
+  spacingFeet = 12;
   private eventDoc: AngularFirestoreDocument<Event>;
   event: Observable<Event>;
 
@@ -39,7 +40,7 @@ export class EventsService {
         .add(data)
         .then(
           // TO-DO: make this work in the component, not the service
-          res => { this.router.navigate(['/view-event/' + res.id]); },
+          res => { this.router.navigate(['/event/' + res.id]); },
           err => reject(err)
         );
     });

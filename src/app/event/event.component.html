@@ -1,0 +1,31 @@
+<agm-map
+  [latitude]='center_lat'
+  [longitude]='center_lng'
+  [zoom]="16"
+  >
+  <agm-marker-cluster
+    [minimumClusterSize]='minClusterSize'
+    [averageCenter]='true'
+    [imagePath]="'/assets/images/m/m'"
+  >
+    <agm-marker *ngFor='let m of this.markers; let i = index'
+      [latitude]='m.lat'
+      [longitude]='m.lng'
+      [markerDraggable]='m.draggable'
+    >
+      <agm-snazzy-info-window [closeWhenOthersOpen]='true' [panOnOpen]='false'>
+        <ng-template>
+          ({{m.lat}}, {{m.lng}})
+          <button class="waves-effect waves-light btn col s12"
+          (click)="claimPoint(m.lat, m.lng)">
+            Claim It
+          </button>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-marker-cluster>
+</agm-map>
+<h4>{{name}}</h4>
+<p>Zoom in on the number clusters and click a marker to claim it. If markers aren't appearing, try refreshing the page.</p>
+<strong>Be Aware:</strong>
+<p>These locations were chosen arbitrarily by a computer algorithm. There are no guarantees any point is safe or accessible. For example: it could be on water, on private property, or in the middle of the road. Trust your own judgement first!</p>

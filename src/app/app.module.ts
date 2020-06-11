@@ -14,12 +14,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
 import { AddEventComponent } from './add-event/add-event.component';
-import { ViewEventComponent } from './view-event/view-event.component';
+import { ViewEventComponent } from './event/event.component';
 import { EventsService } from './shared/events.service';
 
 const appRoutes: Routes = [
   { path: 'add-event', component: AddEventComponent },
-  { path: 'view-event/:eventid', component: ViewEventComponent},
+  { path: 'event/:eventid', component: ViewEventComponent},
   { path: '',
     redirectTo: '/add-event',
     pathMatch: 'full'
