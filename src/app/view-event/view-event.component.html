@@ -1,4 +1,25 @@
-<agm-map [latitude]="0" [longitude]="0" [zoom]="8">
+<agm-map
+  [latitude]='this.center_lat'
+  [longitude]='this.center_lng'
+  [zoom]="16"
+  >
+  <agm-marker-cluster
+    [minimumClusterSize]='minClusterSize'
+    [averageCenter]='true'
+  >
+    <agm-marker *ngFor='let m of this.markers; let i = index'
+      [latitude]='m.lat'
+      [longitude]='m.lng'
+      [markerDraggable]='m.draggable'
+    >
+      <agm-snazzy-info-window [closeWhenOthersOpen]='true'>
+        <ng-template>
+        <strong>Be Aware</strong>
+        <p>This location was chosen arbitrarily by a computer algorithm. There are no guarantees this point is safe or accessible. For example: it could be on water, on private property, or in the middle of the road. Trust your own judgement first!</p>
+        <button>Claim It!</button>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-marker-cluster>
 </agm-map>
-
-<p>view-event works!</p>
+<h3>{{this.event.name}}</h3>

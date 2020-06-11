@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -43,6 +45,8 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyCwq3WJZd2uzeTAPX04jgCmOtUy59X4sFc',
       libraries: ['drawing']
     }),
+    AgmSnazzyInfoWindowModule,
+    AgmJsMarkerClustererModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule
   ],

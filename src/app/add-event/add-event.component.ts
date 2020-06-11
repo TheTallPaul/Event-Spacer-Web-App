@@ -26,8 +26,8 @@ export class AddEventComponent implements OnInit {
 
   constructor(
     public eventsService: EventsService,
-    private route: ActivatedRoute,
-    private router: Router
+    // private route: ActivatedRoute,
+    // private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -51,7 +51,7 @@ export class AddEventComponent implements OnInit {
 
     this.eventsService.createEvent(event)
       .then(res => {
-        this.router.navigate(['/view-event/' + res.id]);
+        // this.router.navigate(['/view-event/' + res.id]);
       });
   }
 }
