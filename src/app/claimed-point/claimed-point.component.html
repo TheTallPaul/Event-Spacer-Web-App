@@ -1,5 +1,17 @@
-<h5>Your Spot is:</h5>
-<strong>({{this.lat}}, {{this.lng}})</strong>
-<p>Be sure to take a screenshot or write it down because, for privacy reasons, Event Spacer does not associate spots with users or IP's.</p>
-<p>Remember to trust your judgement first. The algorithm does not determine if a point is safe, accessible, or legal.</p>
-<strong>Black Lives Matter</strong>
+<div class='row'>
+  <div class='col'>
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Spot Reserved!</span>
+        <p>Be sure to take a screenshot, bookmark this page, or write the coordinates down because, for privacy reasons, Event Spacer does not associate spots with users or IP's and will be unable to recover your spot.</p>
+        <p>Remember to trust your judgement first. The algorithm does not determine if a point is safe, accessible, or legal to be at.</p>
+        <strong>Black Lives Matter</strong>
+      </div>
+      <div class="card-action">
+        <a [href]="'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + lng">
+          ({{lat}}, {{lng}})
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@
       <agm-snazzy-info-window [closeWhenOthersOpen]='true' [panOnOpen]='false'>
         <ng-template>
           <strong>({{m.lat}}, {{m.lng}})</strong>
-          <button class="waves-effect waves-light btn col s12"
+          <button class="waves-effect waves-light btn-large"
           (click)="claimPoint(m.lat, m.lng)">
             Claim It
           </button>
@@ -25,10 +25,19 @@
     </agm-marker>
   </agm-marker-cluster>
 </agm-map>
-<h4>{{name}}</h4>
-<p>Zoom in on the number clusters and click a marker to claim it. If markers aren't appearing, try refreshing the page.</p>
-<strong>Be Aware:</strong>
-<p>These locations were chosen arbitrarily by a computer algorithm. There are no guarantees any point is safe or accessible. For example: it could be on water, on private property, or in the middle of the road. Trust your own judgement first!</p>
+
+<div class='row'>
+  <div class='col'>
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">{{name}}</span>
+          <p>Zoom in on the number clusters and click a marker to claim it. Note that you need to press the 'x' or click on a blank spot to cancel a marker selection.</p>
+          <strong>Be Aware:</strong>
+          <p>These locations were chosen arbitrarily by a computer algorithm. There are no guarantees any point is safe or accessible. For example: it could be on water, on private property, or in the middle of the road. Trust your own judgement first!</p>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <div [hidden]='!loadingEvent'>

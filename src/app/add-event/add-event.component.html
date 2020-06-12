@@ -4,20 +4,34 @@
     </agm-rectangle>
 </agm-map>
 
-<p>Drag the box over the area you want to have your event. Set the spacing to how many feet you want people to be apart from each other in a grid pattern.</p>
+<div class='row'>
+  <div class='col'>
+    <div class="card-panel blue-grey darken-1">
+      <span class='white-text'>
+        <p>Drag the box over the area you want to have your event. Set the spacing to how many feet you want people to be apart from each other in a grid pattern.</p>
+      </span>
+    </div>
+  </div>
+</div>
+<div class='row'>
+  <div class='col'>
+    <form class='card blue-grey lighten-2' id='event-form' [formGroup]='this.eventsService.form' >
+      <span class='white-text darken-2'>
+        <label class='white-text'>
+          Spacing (ft.):
+          <input type="number" min="0" step="0.1" formControlName="spacing_meters" required>
+        </label>
 
-<form [formGroup]="this.eventsService.form" >
-    <label>
-    Spacing (ft.):
-    <input type="number" min="0" step="0.1" formControlName="spacing_meters" required>
-  </label>
+        <label class='white-text darken-2'>
+          Event Name (optional):
+          <input type="text" formControlName="name">
+        </label>
 
-    <label>
-    Event Name (optional):
-    <input type="text" formControlName="name">
-  </label>
+        <button class="waves-effect waves-light btn" (click)="onSubmit()" type="submit">
+          <i class="material-icons right">send</i>Send
+        </button>
+      </span>
+    </form>
 
-    <button class="waves-effect waves-light btn col s12" (click)="onSubmit()">
-    Submit
-  </button>
-</form>
+  </div>
+</div>
