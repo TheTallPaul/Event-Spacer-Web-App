@@ -11,7 +11,7 @@ import * as firebase from 'firebase';
 })
 export class EventsService {
   // TO-DO move the spacing to the component
-  spacingFeet = 12;
+  spacingFeet = 6;
 
   form = new FormGroup({
     spacing_meters: new FormControl(this.spacingFeet),

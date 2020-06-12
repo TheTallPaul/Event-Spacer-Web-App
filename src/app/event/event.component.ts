@@ -55,7 +55,7 @@ export class EventComponent implements OnInit {
         for (const point of this.event.spaced_points) {
           // Filter out markers that have been claimed
           if (!this.event.claimed_spots.hasOwnProperty(
-            encodeURIComponent('' + point.latitude + ',' + point.longitude).replace(/\./g, 'D'))) {
+            this.encodeLatLng(point.latitude, point.longitude))) {
             this.markers.push(
               {
                 lat: point.latitude,
@@ -70,9 +70,13 @@ export class EventComponent implements OnInit {
   }
 
   claimPoint(lat, lng) {
-    // TO-DO make this wonky string logic a proper function or find a better solution
-    this.eventsService.updateEventClaimedSpots(
-      this.eventID, encodeURIComponent('' + lat + ',' + lng).replace(/\./g, 'D'));
+    this.loadingEvent = true;
+    this.eventsService.updateEventClaimedSpots(this.eventID, this.encodeLatLng(lat, lng));
+    this.loadingEvent = false;
+  }
+
+  encodeLatLng(lat, lng) {
+    return encodeURIComponent('' + lat + ',' + lng).replace(/\./g, 'D');
   }
 
   // TO-DO have cleanup take care of all subs

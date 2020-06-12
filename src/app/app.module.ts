@@ -18,6 +18,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { EventComponent } from './event/event.component';
 import { ClaimedPointComponent } from './claimed-point/claimed-point.component';
 import { EventsService } from './shared/events.service';
+import { LocationService } from './shared/location.service';
 
 const appRoutes: Routes = [
   { path: 'add-event', component: AddEventComponent },
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [EventsService],
+  providers: [EventsService, LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -31,7 +31,7 @@
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">{{name}}</span>
-          <p>Zoom in on the number clusters and click a marker to claim it. Note that you need to press the 'x' or click on a blank spot to cancel a marker selection.</p>
+          <p>Tap on the number clusters until a marker appears. Tap a marker and press the 'CLAIM IT' button to claim it. Note that in some browsers you need to press the 'x' or click on a blank spot to cancel a marker selection.</p>
           <strong>Be Aware:</strong>
           <p>These locations were chosen arbitrarily by a computer algorithm. There are no guarantees any point is safe or accessible. For example: it could be on water, on private property, or in the middle of the road. Trust your own judgement first!</p>
       </div>
@@ -41,6 +41,6 @@
 </div>
 
 <div [hidden]='!loadingEvent'>
-<mat-progress-spinner>
+<mat-progress-spinner [color]="'white'" [mode]="'indeterminate'">
 </mat-progress-spinner>
 </div>
