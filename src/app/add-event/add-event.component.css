@@ -10,13 +10,3 @@ agm-map {
 label{
   font-size: 1rem;
 }
-
-.card {
-  margin: .5rem 0 .5rem 0;
-  padding: 10px 10px 3rem 10px;
-}
-
-.card-panel {
-  padding: 10px;
-  margin: 1rem 0 .5rem 0;
-}

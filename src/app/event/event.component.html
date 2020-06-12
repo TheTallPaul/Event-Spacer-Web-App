@@ -38,9 +38,38 @@
     </div>
   </div>
 </div>
+<div class='row'>
+  <div class='col'>
+    <div class='card-panel blue-grey lighten-2 center' id='share-buttons'>
+      <!-- Email -->
+      <a [href]="'mailto:?Subject=Event Spacer: ' + name + '&amp;Body=Event%20 https://eventspacer.org/event/' + eventID">
+        <img src="assets/images/share/email.png" alt="Email" />
+      </a>
+
+      <!-- Facebook -->
+      <a [href]="'https://www.facebook.com/sharer.php?u=https%3A%2F%2Feventspacer.org%2F' + eventID" target="_blank">
+        <img src="assets/images/share/facebook.png" alt="Facebook" />
+      </a>
+
+      <!-- Tumblr-->
+      <a [href]="'https://www.tumblr.com/share/link?url=https://eventspacer.org/event/' + eventID + '&amp;title=Event Spacer: ' + name" target="_blank">
+        <img src="assets/images/share/tumblr.png" alt="Tumblr" />
+      </a>
+
+      <!-- Twitter -->
+      <a [href]="'https://twitter.com/share?url=https://eventspacer.org/event/' + eventID + '&amp;text=Event%20&amp;hashtags=eventspacer'" target='_blank'>
+        <img src="assets/images/share/twitter.png" alt='Twitter' />
+      </a>
+    </div>
+  </div>
+</div>
 </div>
 
-<div [hidden]='!loadingEvent'>
-<mat-progress-spinner [color]="'white'" [mode]="'indeterminate'">
-</mat-progress-spinner>
+<div class='container' [hidden]='!loadingEvent'>
+<div class='row' >
+  <div class='col s6 center-align'>
+    <mat-spinner class='progressSpinner' [mode]="'indeterminate'">
+    </mat-spinner>
+  </div>
+</div>
 </div>
